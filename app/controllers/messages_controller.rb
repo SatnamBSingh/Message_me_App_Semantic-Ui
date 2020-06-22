@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
-
-before_action :require_user
+  skip_before_action :verify_authenticity_token
+  before_action :require_user
 
 def create
   message = current_user.messages.build(message_params)
@@ -16,6 +16,7 @@ end
  end
 
  def message_render(message)
- 	render(partial: 'message', locals: {message: message})
+   render(partial: 'message', locals: {message: message})
  end
+
 end
